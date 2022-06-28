@@ -1,0 +1,14 @@
+<script>
+  form.addEventListener("submit_Busc", async (e) => {
+    e.preventDefault()
+  let fechaBusqueda = document.getElementById("fechaBusqueda");
+    fechaBusqueda = fechaBusqueda.value;
+
+    try {
+      await axios.get("/buscar", { params: { fechaBusqueda: '${fechaBusqueda.value}' } })
+    } catch (error) {
+console.error(error);
+    }
+  });
+
+</script>

@@ -1,0 +1,50 @@
+<script>
+  const form = document.querySelector("form")
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault()
+  let monto = document.getElementById("monto");
+  let monedaOrigen = document.getElementById("monedaOrigen");
+  let fechaConv = document.getElementById("fechaConv");
+  let monedaDestino = document.getElementById("monedaDestino");
+
+    monto = monto.value;
+    monedaOrigen = monedaOrigen.value;
+    fechaConv = fechaConv.value;
+    monedaDestino = monedaDestino.value;
+getData();
+    try {
+      await axios.post("/convertir", { monto, monedaOrigen, fechaConv, monedaDestino })
+    } catch (error) {
+console.error(error);
+    }
+  });
+
+  async function getData() {
+  let url = 'https://mindicador.cl/api/uf/';
+
+    var fecha = new Date (fechaConv.value);
+    var dia = (fecha.getDate());
+    var mes = (fecha.getMonth()+1);
+    var ano = (fecha.getFullYear());
+
+    try {
+const response = await axios.get(url+dia+'-'+mes+'-'+ano);
+let valor = response.data.serie[0].valor;
+
+let valor_1 = parseFloat(valor);
+let monto_2 = parseFloat(monto.value);
+
+if(monedaOrigen.value === 'pesoChileno' && monedaDestino.value === 'pesoChileno' || monedaOrigen.value === 'uf' && monedaDestino.value === 'uf'){
+  document.getElementById("resultado").innerHTML = monto_2;
+} else if (monedaOrigen.value === 'pesoChileno' && monedaDestino.value === 'uf'){
+  document.getElementById("resultado").innerHTML = monto_2/valor_1;
+}else {
+  document.getElementById("resultado").innerHTML = monto_2 * valor_1;
+}
+
+} catch (error) {
+console.error(error);
+}
+  }
+</script>

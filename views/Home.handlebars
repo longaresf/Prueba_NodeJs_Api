@@ -1,0 +1,116 @@
+    <div id="container">
+      <h2 class="pt-3 w-50  mx-auto">Conversor de Moneda</h2>
+               <form id="js-form">
+      <div class="container pt-5 w-50">
+        <div>
+          <div class="form-group row">
+            <label for="monto" class="col-sm-2 col-form-label">Monto</label>
+            <div class="col-sm-10">
+              <input
+                type="text"
+                class="form-control"
+                id="monto"
+                placeholder="Ingrese Monto"
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="monedaOrigen" class="col-sm-2 col-form-label">Origen de Moneda</label>
+            <div class="col-sm-10">
+              <select name="monedaOrigen" id="monedaOrigen">
+                <option value="pesoChileno">Peso Chileno</option>
+                <option value="uf">UF</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="fechaConv" class="col-sm-2 col-form-label"
+              >Fecha de Conversión</label
+            >
+            <div class="col-sm-10">
+              <input
+                type="date"
+                class="form-control"
+                id="fechaConv"
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="monedaDestino" class="col-sm-2 col-form-label">Moneda Destino</label>
+            <div class="col-sm-10">
+              <select name="monedaDestino" id="monedaDestino">
+                <option value="pesoChileno">Peso Chileno</option>
+                <option value="uf">UF</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="resultado" class="col-sm-2 col-form-label">Resultado</label>
+            <div class="col-sm-10">
+              <div id="resultado"></div>
+            </div>
+          </div>
+
+         <button type="submit" class="btn btn-outline-dark  d-grid gap-2 col-6 mx-auto">Convertir</button>
+    </form>
+        </div>
+      </div>
+    </div>
+
+    <div id="container">
+      <h2 class="pt-3 w-50  mx-auto">Buscar por Fecha</h2>
+               <form id="js-form">
+        <div class="container pt-5 w-50">
+          <div class="form-group row">
+            <label for="fechaBusqueda" class="col-sm-2 col-form-label"
+              >Selecionar Fecha</label>
+            <div class="col-sm-10">
+              <input
+                type="date"
+                class="form-control"
+                id="fechaBusqueda"
+              />
+            </div>
+          </div>
+
+         <button type="submit_Busc" class="btn btn-outline-dark  d-grid gap-2 col-6 mx-auto">Buscar</button>
+    </form>
+        </div>
+          </div>
+              <div id="Bitacora">
+      <hr />
+      <hr />
+    <div id="container">
+      <h2 class="pt-3 w-50  mx-auto">Bitácora</h2>
+
+      <div class="container pt-5 w-75">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Fecha_hora</th>
+              <th scope="col">Monto</th>
+              <th scope="col">Moneda Origen</th>
+              <th scope="col">Fecha de Conversión</th>
+              <th scope="col">Moneda Destino</th>
+              <th scope="col">-</th>
+            </tr>
+          </thead>
+          <tbody>
+                {{#each operaciones}}
+      <tr>
+      <td>{{this.id}}</td>
+      <td>{{this.fecha_hora}}</td>
+      <td>{{this.monto}}</td>
+      <td>{{this.monedaOrigen}}</td>
+      <td>{{this.fechaConv}}</td>
+      <td>{{this.monedaDestino}}</td>
+        </tr>
+        {{/each}}
+        </tbody>
+        </table>
+      </div>
+    </div>
+    </div>
+{{> Convertir}}
+{{> Buscar}}
